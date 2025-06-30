@@ -52,11 +52,11 @@ function Login() {
   };
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column",height:"100vh",justifyContent:"center" }}>
-      <Typography sx={{ fontSize: "30px", fontWeight: 600, color: "green" }}>
+    <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column",height:"100vh",justifyContent:"center",maxWidth:"100vw"}}>
+      <Typography sx={{ fontSize: "30px", fontWeight: 600, color: "green",marginBottom:"20px" }}>
         Login
       </Typography>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "30px", minWidth: "500px", maxWidth: "100%" }}>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "30px", minWidth: "300px",width:"100%",maxWidth:"500px" }}>
         <TextField label="Username or Email" name="username" variant="outlined" value={formData.username} onChange={handleChange} />
         <TextField label="Password" name="password" type="password" variant="outlined" value={formData.password} onChange={handleChange} />
         <Button type="submit" variant="contained" sx={{ background: "green" }}>Login</Button>

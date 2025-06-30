@@ -55,12 +55,12 @@ function Signup() {
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column",height:"100vh",justifyContent:"center" }}>
-      <Typography sx={{ fontSize: "30px", fontWeight: 600, color: "green", mb: 2 }}>
+      <Typography sx={{ fontSize: "30px", fontWeight: 600, color: "green", mb: 3 }}>
         Customer Signup
       </Typography>
       <form
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%", maxWidth: "500px" }}
+        style={{ display: "flex", flexDirection: "column", gap: "16px", width:"100%",maxWidth:"500px", minWidth: "300px" }}
       >
         <TextField
           label="Username"
