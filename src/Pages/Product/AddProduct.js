@@ -22,7 +22,8 @@ function AddPartner() {
     const requestData = {
         name: formData.name,
         price: formData.price,
-        description:formData.description
+        description:formData.description,
+        quantity:formData.quantity
     };
 
     try {
@@ -76,6 +77,13 @@ function AddPartner() {
           label="Description"
           name="description"
           value={formData.description}
+          onChange={handleChange}
+          required
+        />
+         <TextField
+          label="Quantity"
+          name="quantity"
+          value={formData.quantity}
           onChange={handleChange}
           required
         />

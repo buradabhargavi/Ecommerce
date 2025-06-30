@@ -5,7 +5,7 @@ import Logout from "../Pages/Logout/LogoutUser";
 function PartnerLayout() {
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" sx={{background:"green"}}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>Partner Panel</Typography>
           <Button color="inherit" component={Link} to="/partner/add-product">add Product</Button>

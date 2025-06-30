@@ -51,7 +51,7 @@ function ProductList() {
   return (
     <div>
       <h2>Product List</h2>
-      <Button variant="contained" color="primary" onClick={() => navigate("/partner/add-product")}>
+      <Button variant="contained" color="primary" onClick={() => navigate("/partner/add-product")} sx={{background:"green"}}>
         Add product
       </Button>
 
@@ -62,6 +62,7 @@ function ProductList() {
               <TableCell>product ID</TableCell>
               <TableCell>name</TableCell>
               <TableCell>price</TableCell>
+              <TableCell>quantity</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -71,6 +72,7 @@ function ProductList() {
                 <TableCell>{product.id}</TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.price}</TableCell>
+                 <TableCell>{product.quantity}</TableCell>
                 <TableCell>
                   <Button
                     variant="outlined"

@@ -70,7 +70,8 @@ function Cart() {
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
+    <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",width:"100vw"}}>
+    <div style={{ padding: 20,maxWidth: "700px", width: "100%"}}>
       <Typography variant="h4" gutterBottom>
         Your Cart
       </Typography>
@@ -110,6 +111,7 @@ function Cart() {
         </>
       )}
     </div>
+    </Box>
   );
 }
 

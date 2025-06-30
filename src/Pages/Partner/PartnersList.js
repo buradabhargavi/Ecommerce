@@ -49,7 +49,7 @@ function PartnersList() {
   return (
     <div>
       <h2>Partners List</h2>
-      <Button variant="contained" color="primary" onClick={() => navigate("/admin/add-partner")}>
+      <Button variant="contained" color="primary" onClick={() => navigate("/admin/add-partner")} sx={{background:"green"}}>
         Add Partner
       </Button>
 

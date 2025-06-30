@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -54,7 +54,7 @@ function Signup() {
   };
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", mt: 4 }}>
+    <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column",height:"100vh",justifyContent:"center" }}>
       <Typography sx={{ fontSize: "30px", fontWeight: 600, color: "green", mb: 2 }}>
         Customer Signup
       </Typography>
@@ -95,6 +95,7 @@ function Signup() {
         <Button type="submit" variant="contained" sx={{ background: "green" }}>
           Signup
         </Button>
+         <Box sx={{textAlign:"center"}}>Already have an account?<Link to="/login">Login</Link></Box>
       </form>
     </Box>
   );
