@@ -42,8 +42,8 @@ function Login() {
         }
 
       } else {
-        const error = await res.text();
-        alert("Login failed: " + error);
+        const error = await res.json();
+        alert("Login failed: " + error.message);
       }
     } catch (err) {
       console.error(err);
