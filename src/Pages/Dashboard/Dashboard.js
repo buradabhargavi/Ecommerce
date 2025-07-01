@@ -7,12 +7,16 @@ import {
   Button,
   Grid,
   Box,
+  TextField,
 } from "@mui/material";
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [searchValue, setSearchValue] = useState("");
+
   const userId = localStorage.getItem("user_id");
+
   const fetchProducts = async () => {
     const token = localStorage.getItem("token");
     try {
@@ -30,31 +34,31 @@ function Dashboard() {
   };
 
   const fetchCartItems = async () => {
-  const userId = localStorage.getItem("user_id");
-  const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("user_id");
+    const token = localStorage.getItem("token");
 
-  try {
-    const response = await fetch(`http://localhost:9091/customer/cart?userId=${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    try {
+      const response = await fetch(`http://localhost:9091/customer/cart?userId=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch cart items");
+      if (!response.ok) {
+        throw new Error("Failed to fetch cart items");
+      }
+
+      const initialQuantities = {};
+      const data = await response.json();
+      data.forEach((item) => {
+        initialQuantities[item.productId] = item.quantity;
+      });
+
+      setQuantities(initialQuantities);
+    } catch (err) {
+      console.error("Failed to fetch cart quantities", err);
     }
-    
-    const initialQuantities = {};
-    const data = await response.json();
-    data.forEach((item) => {
-      initialQuantities[item.productId] = item.quantity;
-    });
-   
-    setQuantities(initialQuantities);
-  } catch (err) {
-    console.error("Failed to fetch cart quantities", err);
-  }
-};
+  };
 
   const handleAddToCart = async (userId, productId, quantity) => {
     try {
@@ -116,18 +120,57 @@ function Dashboard() {
     }
   };
 
+
+  const handleSearch = async (event) => {
+    try {
+      const token = localStorage.getItem("token");
+      setSearchValue(event.target.value);
+      if (searchValue.length >= 2) {
+        const response = await fetch(`http://localhost:9091/customer/search?name=${searchValue}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          }
+        });
+        if (!response.ok) {
+          throw new Error("Failed to update cart");
+        }
+      const data = await response.json();
+       setProducts(data);
+      //  if(data.length == 0){
+      //   //return window.alert("no items found");
+      //   return "no items found";
+      //  }
+ 
+       
+      }
+      else{
+        fetchProducts();
+      }
+    }
+    catch (error) {
+      console.error("Error updating cart quantity:", error);
+    }
+
+
+  }
+
   useEffect(() => {
-    
     fetchProducts();
     fetchCartItems();
   }, []);
 
 
   return (
+    products.length > 0 ?
     <div style={{ padding: 20 }}>
-      <Typography variant="h4" gutterBottom>
-        All Products
-      </Typography>
+      <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+        <Typography variant="h4" gutterBottom>
+          All Products
+        </Typography>
+        <TextField value={searchValue} placeholder="search..." onChange={handleSearch}></TextField>
+      </Box>
       <Grid container spacing={3}>
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
@@ -179,6 +222,8 @@ function Dashboard() {
         ))}
       </Grid>
     </div>
+    :
+    <Typography>No products found</Typography>
   );
 }
 

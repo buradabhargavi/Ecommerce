@@ -6,7 +6,8 @@ function AddPartner() {
   const [formData, setFormData] = useState({
     name:"",
     price:0,
-    description:""
+    description:"",
+    quantity:0,
   });
 
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });

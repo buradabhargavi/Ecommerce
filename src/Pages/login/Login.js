@@ -57,7 +57,7 @@ function Login() {
         Login
       </Typography>
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "30px", minWidth: "300px",width:"100%",maxWidth:"500px" }}>
-        <TextField label="Username or Email" name="username" variant="outlined" value={formData.username} onChange={handleChange} />
+        <TextField label="user name" name="username" variant="outlined" value={formData.username} onChange={handleChange} />
         <TextField label="Password" name="password" type="password" variant="outlined" value={formData.password} onChange={handleChange} />
         <Button type="submit" variant="contained" sx={{ background: "green" }}>Login</Button>
         <Box sx={{textAlign:"center"}}>don't have an account?<Link to="/signup">sign up</Link></Box>
