@@ -163,7 +163,6 @@ function Dashboard() {
 
 
   return (
-    products.length > 0 ?
     <div style={{ padding: 20 }}>
       <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
         <Typography variant="h4" gutterBottom>
@@ -171,6 +170,7 @@ function Dashboard() {
         </Typography>
         <TextField value={searchValue} placeholder="search..." onChange={handleSearch}></TextField>
       </Box>
+       {products.length>0 ?
       <Grid container spacing={3}>
         {products.map((product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
@@ -220,10 +220,12 @@ function Dashboard() {
             </Card>
           </Grid>
         ))}
-      </Grid>
-    </div>
-    :
+      </Grid>:
+      
     <Typography>No products found</Typography>
+      }
+    </div>
+    
   );
 }
 
